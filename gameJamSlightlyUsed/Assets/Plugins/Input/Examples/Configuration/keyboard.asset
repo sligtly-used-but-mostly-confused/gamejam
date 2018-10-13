@@ -27,6 +27,12 @@ MonoBehaviour:
   - target: 1
     buttonsPositive: 77000000
     buttonsNegative: 73000000
-  - target: 6
+  - target: 2
     buttonsPositive: 13010000
     buttonsNegative: 14010000
+  - target: 3
+    buttonsPositive: 11010000
+    buttonsNegative: 12010000
+  - target: 4
+    buttonsPositive: 20000000
+    buttonsNegative: 00000000
