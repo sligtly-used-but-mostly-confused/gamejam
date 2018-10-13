@@ -23,7 +23,7 @@ public class ObjectController : MonoBehaviour {
     private Coroutine _loseLifeOnCoolDownCoroutine;
     private List<GameObject> _healthObjects = new List<GameObject>();
 
-    private void Start()
+    public virtual void Start()
     {
         _maxHealth = _SqrtMaxHealth * _SqrtMaxHealth;
 
@@ -99,7 +99,6 @@ public class ObjectController : MonoBehaviour {
             if(collision.gameObject.GetComponent<PlatformChild>().Owner.GetTopObject() == collision.gameObject)
             {
                 var newY = collision.transform.lossyScale.y/2 + collision.transform.position.y + transform.lossyScale.y/2;
-                Debug.Log(newY);
                 transform.position = new Vector3(transform.position.x, newY, transform.position.z);
             }
         }

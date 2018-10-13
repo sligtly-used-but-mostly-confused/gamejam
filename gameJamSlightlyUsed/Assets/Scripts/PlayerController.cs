@@ -15,6 +15,18 @@ public class PlayerController : ObjectController {
     [SerializeField]
     private int _controllerId = 3;
 
+    public override void Start()
+    {
+        base.Start();
+
+        var mat = PlayerManager.Instance.GetPlayerMaterial();
+        GetComponent<Renderer>().material = mat;
+
+        var endpoint = PlayerManager.Instance.GetEndpoint();
+        endpoint.GetComponent<Renderer>().material = mat;
+        endpoint.Owner = this;
+    }
+
     void Update () {
         input = MappedInput.InputDevices[_controllerId];
         Vector3 leftStick = input.GetAxis2DCircleClamp(MappedAxis.Horizontal, MappedAxis.Vertical);
