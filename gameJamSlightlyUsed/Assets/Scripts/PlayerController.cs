@@ -8,6 +8,12 @@ public class PlayerController : ObjectController {
 
     [SerializeField]
     private float _moveSpeed = 5;
+    [SerializeField]
+    private float _shootSpeed = 5;
+    [SerializeField]
+    private GameObject _aimingReticle;
+    [SerializeField]
+    private GameObject _projectilePrefab;
 
     void Update () {
         input = MappedInput.InputDevices[3];
@@ -15,7 +21,21 @@ public class PlayerController : ObjectController {
 
         Move(new Vector3(leftStick.x, 0, leftStick.y) * Time.deltaTime * _moveSpeed);
 
+        Vector3 rightStick = input.GetAxis2DCircleClamp(MappedAxis.AimX, MappedAxis.AimY);
+        var aimDir = new Vector3(rightStick.x, 0, rightStick.y).normalized;
+        _aimingReticle.transform.localPosition = aimDir;
 
+        if (input.GetIsAxisTapped(MappedAxis.ShootGravGun) && aimDir.magnitude > 0)
+        {
+            Shoot(_aimingReticle.transform.localPosition);
+        }
+    }
+
+    private void Shoot(Vector3 dir)
+    {
+        var projectile = Instantiate(_projectilePrefab);
+        projectile.transform.position = _aimingReticle.transform.position;
+        projectile.GetComponent<Rigidbody>().velocity = dir * _shootSpeed;
     }
 
     private static Vector3Int ClosestDirection(Vector3 v, Vector3Int[] compass)
