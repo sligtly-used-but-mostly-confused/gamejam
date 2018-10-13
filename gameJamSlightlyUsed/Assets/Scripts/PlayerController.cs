@@ -18,16 +18,43 @@ public class PlayerController : ObjectController {
     void Update () {
         input = MappedInput.InputDevices[_controllerId];
         Vector3 leftStick = input.GetAxis2DCircleClamp(MappedAxis.Horizontal, MappedAxis.Vertical);
-
-        Move(new Vector3(leftStick.x, 0, leftStick.y) * Time.deltaTime);
+        var fixedLeftStick = Camera.main.transform.rotation * new Vector3(leftStick.x, 0, leftStick.y);
+        fixedLeftStick = new Vector3(fixedLeftStick.x, 0, fixedLeftStick.z);
+        
+        Move(fixedLeftStick * Time.deltaTime);
 
         Vector3 rightStick = input.GetAxis2DCircleClamp(MappedAxis.AimX, MappedAxis.AimY);
+
         var aimDir = new Vector3(rightStick.x, 0, rightStick.y).normalized;
-        _aimingReticle.transform.localPosition = aimDir;
+        var fixedAimDir = Camera.main.transform.rotation * aimDir;
+        fixedAimDir = new Vector3(fixedAimDir.x, 0, fixedAimDir.z);
+
+        _aimingReticle.transform.localPosition = fixedAimDir;
 
         if (input.GetIsAxisTapped(MappedAxis.ShootGravGun) && aimDir.magnitude > 0)
         {
             Shoot(_aimingReticle.transform.localPosition);
+        }
+
+        if(input.GetAxis(MappedAxis.ChangeCameraAngle) != 0)
+        {
+            float changeCameraDir = input.GetAxis(MappedAxis.ChangeCameraAngle);
+            CameraController.Instance.Rotate(changeCameraDir);
+        }
+    }
+
+    public override void Die()
+    {
+        transform.position = FindObjectOfType<RespawnPosition>().transform.position;
+        ChangeLife(_maxHealth);
+    }
+
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+        if(collision.gameObject.GetComponent<EnemyController>())
+        {
+            LoseLife(1);
         }
     }
 

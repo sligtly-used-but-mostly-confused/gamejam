@@ -17,13 +17,9 @@ public class ProjectileController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("here");
         if(collision.gameObject.GetComponent<EnemyController>())
         {
-            var pos = new Vector2Int(Mathf.RoundToInt(collision.transform.position.x), Mathf.RoundToInt(collision.transform.position.z));
-            PlatformController.FindPlatformAt(pos).Raise();
-
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<EnemyController>().Hit();
             Destroy(gameObject);
         }
     }

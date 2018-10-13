@@ -199,10 +199,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
+  _SqrtMaxHealth: 3
+  _loseLifeCoolDownTime: 1
+  _healthPrefab: {fileID: 0}
+  _life: 4
+  _fullLifeMat: {fileID: 0}
+  _emptyLifeMat: {fileID: 0}
   _shootSpeed: 5
   _aimingReticle: {fileID: 1475539409846264}
   _projectilePrefab: {fileID: 1445055597723946, guid: 9aa2ed74d94b8df4cb2ca71a3c266f01,
     type: 2}
+  _controllerId: 3
 --- !u!135 &135550644213451192
 SphereCollider:
   m_ObjectHideFlags: 1

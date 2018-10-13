@@ -6,8 +6,10 @@ public class EnemySpawner : MonoBehaviour {
 
     [SerializeField]
     private GameObject _enemyPrefab;
+    [SerializeField]
+    private float _enemySpawnRate = 1;
 
-	void Start () {
+    void Start () {
 
         StartCoroutine(SpawnEnemyLoop());
 
@@ -16,7 +18,7 @@ public class EnemySpawner : MonoBehaviour {
     private IEnumerator SpawnEnemyLoop()
     {
         SpawnEnemy();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(_enemySpawnRate);
         yield return SpawnEnemyLoop();
     }
 

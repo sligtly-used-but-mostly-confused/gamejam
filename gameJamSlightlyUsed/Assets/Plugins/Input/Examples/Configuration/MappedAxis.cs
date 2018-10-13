@@ -10,6 +10,5 @@ public enum MappedAxis
 	AimX,
 	AimY,
     ShootGravGun,
-    ChangeGrav,
-    ChangeCharacter
+    ChangeCameraAngle
 }

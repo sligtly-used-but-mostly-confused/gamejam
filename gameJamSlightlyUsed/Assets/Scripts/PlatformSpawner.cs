@@ -16,7 +16,7 @@ public class PlatformSpawner : MonoBehaviour {
             for (int j = -PlatformGridSize.y; j <= PlatformGridSize.y; j++)
             {
                 var obj = Instantiate(_platformPrefab);
-                obj.transform.position = new Vector3(i, 0, j);
+                obj.transform.position = transform.position + new Vector3(i, 0, j);
             }
         }
 	}
