@@ -21,8 +21,8 @@ public class ProjectileController : MonoBehaviour {
     {
         if(collision.gameObject.GetComponent<EnemyController>())
         {
-            collision.gameObject.GetComponent<EnemyController>().Hit();
-            Owner.GetComponent<PlayerController>().OnKillOther();
+            collision.gameObject.GetComponent<EnemyController>().Hit(Owner);
+            //Owner.GetComponent<PlayerController>().OnKillOther();
             Destroy(gameObject);
         }
     }

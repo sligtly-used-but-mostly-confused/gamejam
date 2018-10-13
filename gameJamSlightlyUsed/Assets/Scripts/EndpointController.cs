@@ -22,6 +22,7 @@ public class EndpointController : MonoBehaviour {
         {
             _hasWon = true;
             var ui = Instantiate(WinGameUI);
+            ui.GetComponent<WinGameUI>().WinGame(other.GetComponent<PlayerController>());
             ui.transform.SetParent(CanvasController.Instance.transform, false);
         }
     }

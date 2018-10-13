@@ -9,7 +9,9 @@ public class ObjectController : MonoBehaviour {
     [SerializeField]
     protected float _moveSpeed = 5;
     [SerializeField]
-    private int _SqrtMaxHealth = 2;
+    protected float MoveSpeedStep = .25f;
+    [SerializeField]
+    protected int _SqrtMaxHealth = 2;
     protected int _maxHealth = 4;
     [SerializeField]
     private float _loseLifeCoolDownTime = 1;
@@ -22,20 +24,28 @@ public class ObjectController : MonoBehaviour {
     [SerializeField]
     private Material _emptyLifeMat;
 
-    protected int NumKills = 0;
+    public int NumKills = 0;
 
     private Coroutine _loseLifeOnCoolDownCoroutine;
     private List<GameObject> _healthObjects = new List<GameObject>();
 
     public virtual void Start()
     {
+        ResetLifes();
+    }
+
+    protected void ResetLifes()
+    {
+        _healthObjects.ForEach(x => Destroy(x));
+        _healthObjects.Clear();
+
         _maxHealth = _SqrtMaxHealth * _SqrtMaxHealth;
 
-        float healthSize = .5f / (float) _SqrtMaxHealth;
+        float healthSize = .5f / (float)_SqrtMaxHealth;
 
         for (int i = 0; i < _SqrtMaxHealth; i++)
         {
-            for(int j = 0; j < _SqrtMaxHealth; j++)
+            for (int j = 0; j < _SqrtMaxHealth; j++)
             {
                 var health = Instantiate(_healthPrefab);
                 health.transform.SetParent(transform);
@@ -49,9 +59,14 @@ public class ObjectController : MonoBehaviour {
         _life = _maxHealth;
     }
 
-    public virtual void OnKillOther()
+    public virtual void OnKillOther(ObjectController other)
     {
         NumKills++;
+    }
+
+    public virtual void LevelUp()
+    {
+        _moveSpeed = Mathf.Clamp(_moveSpeed + MoveSpeedStep, _moveSpeedRange.x, _moveSpeedRange.y);
     }
 
     public void Move(Vector3 dir)
@@ -59,11 +74,11 @@ public class ObjectController : MonoBehaviour {
         transform.position += dir * _moveSpeed;
     }
 
-    public void LoseLife(int amount)
+    public void LoseLife(int amount, ObjectController attacker)
     {
         if(_loseLifeOnCoolDownCoroutine == null)
         {
-            _loseLifeOnCoolDownCoroutine = StartCoroutine(LoseLifeOnCoolDown(amount));
+            _loseLifeOnCoolDownCoroutine = StartCoroutine(LoseLifeOnCoolDown(amount, attacker));
         }
     }
 
@@ -72,11 +87,12 @@ public class ObjectController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private IEnumerator LoseLifeOnCoolDown(int amount)
+    private IEnumerator LoseLifeOnCoolDown(int amount, ObjectController attacker)
     {
         _life -= amount;
         if(_life <= 0)
         {
+            attacker.OnKillOther(this);
             Die();
         }
 

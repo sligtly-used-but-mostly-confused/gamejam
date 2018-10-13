@@ -38,6 +38,11 @@ public class PlatformController : MonoBehaviour {
 
     public void Lower()
     {
+        if(_platForms.Count == 1)
+        {
+            return;
+        }
+
         var topObject = _platForms.Pop();
         Destroy(topObject);
     }

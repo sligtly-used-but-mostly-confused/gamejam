@@ -5,28 +5,32 @@ using System.Linq;
 
 public class EnemyController : ObjectController {
 
+    public int EnemySqrtMaxHealth = 3;
+
 	// Update is called once per frame
 	void Update () {
         float minDistance = 1000000;
         GameObject closestPlayer = null;
 
-        FindObjectsOfType<PlayerController>().ToList().ForEach(x =>
+
+        foreach(var x in FindObjectsOfType<PlayerController>())
         {
-            if((x.transform.position - transform.position).magnitude < minDistance)
+            if ((x.transform.position - transform.position).magnitude < minDistance)
             {
                 closestPlayer = x.gameObject;
                 minDistance = (x.transform.position - transform.position).magnitude;
             }
-        });
+        }
 
-        var dir = (closestPlayer.transform.position - transform.position).normalized;
+        var dir = (closestPlayer.transform.position - transform.position);
+        dir = new Vector3(dir.x, 0, dir.z).normalized;
 
         Move(dir * Time.deltaTime);
     }
 
-    public void Hit()
+    public void Hit(ObjectController other)
     {
-        LoseLife(1);
+        LoseLife(1, other);
     }
 
     public override void Die()
@@ -44,9 +48,24 @@ public class EnemyController : ObjectController {
                 }
             }
         }
-
         
-
         Destroy(gameObject);
+    }
+
+    public override void OnKillOther(ObjectController other)
+    {
+        base.OnKillOther(other);
+        LevelUp();
+        _SqrtMaxHealth = Mathf.Min(_SqrtMaxHealth + 1, EnemySqrtMaxHealth);
+        ResetLifes();
+    }
+
+    protected override void OnCollisionStay(Collision collision)
+    {
+        base.OnCollisionStay(collision);
+        if (collision.gameObject.GetComponent<PlayerController>())
+        {
+            collision.gameObject.GetComponent<PlayerController>().LoseLife(1, this);
+        }
     }
 }

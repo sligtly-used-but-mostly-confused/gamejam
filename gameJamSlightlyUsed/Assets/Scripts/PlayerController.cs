@@ -7,7 +7,11 @@ public class PlayerController : ObjectController {
     protected readonly Vector3Int[] _moveDirs = { new Vector3Int(1,0,0), new Vector3Int(-1, 0, 0), new Vector3Int(0, 0, 1), new Vector3Int(0, 0, -1) };
 
     [SerializeField]
+    private float _shootSpeedStep = 2.5f;
+    [SerializeField]
     private float _shootSpeed = 5;
+    [SerializeField]
+    private float _shootCooldownStep = -.1f;
     [SerializeField]
     private float _shootCooldown = 1;
     [SerializeField]
@@ -60,7 +64,7 @@ public class PlayerController : ObjectController {
         if(input.GetAxis(MappedAxis.ChangeCameraAngle) != 0)
         {
             float changeCameraDir = input.GetAxis(MappedAxis.ChangeCameraAngle);
-            CameraController.Instance.Rotate(changeCameraDir);
+            CameraController.Instance.Rotate(-changeCameraDir);
         }
     }
 
@@ -73,21 +77,18 @@ public class PlayerController : ObjectController {
         _shootCooldown = _shootCooldownRange.y;
     }
 
-    public override void OnKillOther()
+    public override void OnKillOther(ObjectController other)
     {
-        base.OnKillOther();
-        _shootSpeed = Mathf.Clamp(_shootSpeed + .25f, _shootSpeedRange.x, _shootSpeedRange.y); ;
-        _moveSpeed = Mathf.Clamp(_moveSpeed + .25f, _moveSpeedRange.x, _moveSpeedRange.y);
-        _shootCooldown = Mathf.Clamp(_shootCooldown - .1f, _shootCooldownRange.x, _shootCooldownRange.y);
+        base.OnKillOther(other);
+        for(int i = 0; i < other.NumKills + 1; i++)
+            LevelUp();
     }
-
-    private void OnCollisionStay(Collision collision)
+    
+    public override void LevelUp()
     {
-        base.OnCollisionStay(collision);
-        if (collision.gameObject.GetComponent<EnemyController>())
-        {
-            LoseLife(1);
-        }
+        base.LevelUp();
+        _shootSpeed = Mathf.Clamp(_shootSpeed + _shootSpeedStep, _shootSpeedRange.x, _shootSpeedRange.y);
+        _shootCooldown = Mathf.Clamp(_shootCooldown + _shootCooldownStep, _shootCooldownRange.x, _shootCooldownRange.y);
     }
 
     private IEnumerator ShootOnCooldown()

@@ -7,7 +7,11 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
+    private GameObject _platformBrakingEnemyPrefab;
+    [SerializeField]
     private float _enemySpawnRate = 1;
+
+    public float chanceToSpawnBraker = .2f;
 
     void Start () {
 
@@ -24,7 +28,16 @@ public class EnemySpawner : MonoBehaviour {
 
     private void SpawnEnemy()
     {
-        var enemy = Instantiate(_enemyPrefab);
+        GameObject enemy = null;
+        if(Random.value > chanceToSpawnBraker)
+        {
+            enemy = Instantiate(_enemyPrefab);
+        }
+        else
+        {
+            enemy = Instantiate(_platformBrakingEnemyPrefab);
+        }
+
         enemy.transform.position = transform.position;
     }
 }
