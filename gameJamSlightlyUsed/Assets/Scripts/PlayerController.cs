@@ -7,19 +7,19 @@ public class PlayerController : ObjectController {
     protected readonly Vector3Int[] _moveDirs = { new Vector3Int(1,0,0), new Vector3Int(-1, 0, 0), new Vector3Int(0, 0, 1), new Vector3Int(0, 0, -1) };
 
     [SerializeField]
-    private float _moveSpeed = 5;
-    [SerializeField]
     private float _shootSpeed = 5;
     [SerializeField]
     private GameObject _aimingReticle;
     [SerializeField]
     private GameObject _projectilePrefab;
+    [SerializeField]
+    private int _controllerId = 3;
 
     void Update () {
-        input = MappedInput.InputDevices[3];
+        input = MappedInput.InputDevices[_controllerId];
         Vector3 leftStick = input.GetAxis2DCircleClamp(MappedAxis.Horizontal, MappedAxis.Vertical);
 
-        Move(new Vector3(leftStick.x, 0, leftStick.y) * Time.deltaTime * _moveSpeed);
+        Move(new Vector3(leftStick.x, 0, leftStick.y) * Time.deltaTime);
 
         Vector3 rightStick = input.GetAxis2DCircleClamp(MappedAxis.AimX, MappedAxis.AimY);
         var aimDir = new Vector3(rightStick.x, 0, rightStick.y).normalized;
