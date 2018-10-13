@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour {
 
+    public PlayerController Owner;
+
     private void Start()
     {
         StartCoroutine(Kill());
@@ -20,6 +22,7 @@ public class ProjectileController : MonoBehaviour {
         if(collision.gameObject.GetComponent<EnemyController>())
         {
             collision.gameObject.GetComponent<EnemyController>().Hit();
+            Owner.GetComponent<PlayerController>().OnKillOther();
             Destroy(gameObject);
         }
     }

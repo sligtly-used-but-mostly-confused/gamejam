@@ -9,11 +9,20 @@ public class PlayerController : ObjectController {
     [SerializeField]
     private float _shootSpeed = 5;
     [SerializeField]
+    private float _shootCooldown = 1;
+    [SerializeField]
     private GameObject _aimingReticle;
     [SerializeField]
     private GameObject _projectilePrefab;
     [SerializeField]
     private int _controllerId = 3;
+
+    [SerializeField]
+    protected Vector2 _shootSpeedRange = new Vector2(5, 15);
+    [SerializeField]
+    protected Vector2 _shootCooldownRange = new Vector2(.1f, 1);
+
+    private Coroutine ShootingCooldownCoroutine = null;
 
     public override void Start()
     {
@@ -43,9 +52,9 @@ public class PlayerController : ObjectController {
 
         _aimingReticle.transform.localPosition = fixedAimDir;
 
-        if (input.GetIsAxisTapped(MappedAxis.ShootGravGun) && aimDir.magnitude > 0)
+        if (input.GetAxis(MappedAxis.ShootGravGun) != 0 && aimDir.magnitude > 0 && ShootingCooldownCoroutine == null)
         {
-            Shoot(_aimingReticle.transform.localPosition);
+            ShootingCooldownCoroutine = StartCoroutine(ShootOnCooldown());
         }
 
         if(input.GetAxis(MappedAxis.ChangeCameraAngle) != 0)
@@ -59,15 +68,33 @@ public class PlayerController : ObjectController {
     {
         transform.position = FindObjectOfType<RespawnPosition>().transform.position;
         ChangeLife(_maxHealth);
+        _shootSpeed = _shootSpeedRange.x ;
+        _moveSpeed = _moveSpeedRange.x;
+        _shootCooldown = _shootCooldownRange.y;
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    public override void OnKillOther()
     {
-        base.OnCollisionEnter(collision);
-        if(collision.gameObject.GetComponent<EnemyController>())
+        base.OnKillOther();
+        _shootSpeed = Mathf.Clamp(_shootSpeed + .25f, _shootSpeedRange.x, _shootSpeedRange.y); ;
+        _moveSpeed = Mathf.Clamp(_moveSpeed + .25f, _moveSpeedRange.x, _moveSpeedRange.y);
+        _shootCooldown = Mathf.Clamp(_shootCooldown - .1f, _shootCooldownRange.x, _shootCooldownRange.y);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        base.OnCollisionStay(collision);
+        if (collision.gameObject.GetComponent<EnemyController>())
         {
             LoseLife(1);
         }
+    }
+
+    private IEnumerator ShootOnCooldown()
+    {
+        Shoot(_aimingReticle.transform.localPosition);
+        yield return new WaitForSeconds(_shootCooldown);
+        ShootingCooldownCoroutine = null;
     }
 
     private void Shoot(Vector3 dir)
@@ -75,6 +102,7 @@ public class PlayerController : ObjectController {
         var projectile = Instantiate(_projectilePrefab);
         projectile.transform.position = _aimingReticle.transform.position;
         projectile.GetComponent<Rigidbody>().velocity = dir * _shootSpeed;
+        projectile.GetComponent<ProjectileController>().Owner = this;
     }
 
     private static Vector3Int ClosestDirection(Vector3 v, Vector3Int[] compass)

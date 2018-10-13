@@ -5,7 +5,9 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour {
 
     [SerializeField]
-    private float _moveSpeed = 5;
+    protected Vector2 _moveSpeedRange = new Vector2(5,15);
+    [SerializeField]
+    protected float _moveSpeed = 5;
     [SerializeField]
     private int _SqrtMaxHealth = 2;
     protected int _maxHealth = 4;
@@ -19,6 +21,8 @@ public class ObjectController : MonoBehaviour {
     private Material _fullLifeMat;
     [SerializeField]
     private Material _emptyLifeMat;
+
+    protected int NumKills = 0;
 
     private Coroutine _loseLifeOnCoolDownCoroutine;
     private List<GameObject> _healthObjects = new List<GameObject>();
@@ -43,6 +47,11 @@ public class ObjectController : MonoBehaviour {
         }
 
         _life = _maxHealth;
+    }
+
+    public virtual void OnKillOther()
+    {
+        NumKills++;
     }
 
     public void Move(Vector3 dir)
@@ -92,7 +101,7 @@ public class ObjectController : MonoBehaviour {
         }
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.GetComponent<PlatformChild>())
         {
