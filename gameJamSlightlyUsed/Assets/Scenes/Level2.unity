@@ -1082,29 +1082,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
         type: 2}
-      propertyPath: _controllerId
-      value: 4
+      propertyPath: _SqrtMaxHealth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
         type: 2}
-      propertyPath: _healthPrefab
-      value: 
-      objectReference: {fileID: 1231442639888900, guid: d30f56ecc4788044ca27dc3e62c48b2e,
-        type: 2}
+      propertyPath: _moveSpeedRange.x
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
         type: 2}
-      propertyPath: _emptyLifeMat
-      value: 
-      objectReference: {fileID: 2100000, guid: b07f323bd1b413340b4cfe664a1b5737, type: 2}
-    - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
-        type: 2}
-      propertyPath: _fullLifeMat
-      value: 
-      objectReference: {fileID: 2100000, guid: d6b0b7345bf84cf4798ab1b83871831e, type: 2}
-    - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
-        type: 2}
-      propertyPath: _SqrtMaxHealth
-      value: 3
+      propertyPath: _shootSpeedRange.x
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df7227213b5bad24085a3cc67fcbd50b, type: 2}
@@ -1533,7 +1522,7 @@ Prefab:
     - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
         type: 2}
       propertyPath: _SqrtMaxHealth
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114299364280793756, guid: df7227213b5bad24085a3cc67fcbd50b,
         type: 2}

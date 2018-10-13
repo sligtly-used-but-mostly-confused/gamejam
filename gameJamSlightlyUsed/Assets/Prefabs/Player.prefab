@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171088397110474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.78, y: 2.45, z: -0.818638}
+  m_LocalPosition: {x: 6.72, y: 5.05, z: 0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4757982289346306}
@@ -198,18 +198,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a7f1af85e2ac748ac1401fb1a8bebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeedRange: {x: 5, y: 15}
   _moveSpeed: 5
-  _SqrtMaxHealth: 3
+  _SqrtMaxHealth: 2
   _loseLifeCoolDownTime: 1
-  _healthPrefab: {fileID: 0}
+  _healthPrefab: {fileID: 1231442639888900, guid: d30f56ecc4788044ca27dc3e62c48b2e,
+    type: 2}
   _life: 4
-  _fullLifeMat: {fileID: 0}
-  _emptyLifeMat: {fileID: 0}
+  _fullLifeMat: {fileID: 2100000, guid: d6b0b7345bf84cf4798ab1b83871831e, type: 2}
+  _emptyLifeMat: {fileID: 2100000, guid: b07f323bd1b413340b4cfe664a1b5737, type: 2}
   _shootSpeed: 5
+  _shootCooldown: 1
   _aimingReticle: {fileID: 1475539409846264}
   _projectilePrefab: {fileID: 1445055597723946, guid: 9aa2ed74d94b8df4cb2ca71a3c266f01,
     type: 2}
-  _controllerId: 3
+  _controllerId: 4
+  _shootSpeedRange: {x: 5, y: 15}
+  _shootCooldownRange: {x: 0.1, y: 1}
 --- !u!135 &135550644213451192
 SphereCollider:
   m_ObjectHideFlags: 1
