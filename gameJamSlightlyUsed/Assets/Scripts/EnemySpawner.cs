@@ -10,19 +10,46 @@ public class EnemySpawner : MonoBehaviour {
     private GameObject _platformBrakingEnemyPrefab;
     [SerializeField]
     private float _enemySpawnRate = 1;
-
+    [SerializeField]
+    private float _enemySwarmSpawnRate = .25f;
+    [SerializeField]
+    private float _timeBetweenSwarmModes = 20f;
+    [SerializeField]
+    private float _swarmModeDuration = 5f;
     public float chanceToSpawnBraker = .2f;
 
-    void Start () {
+    public static bool InSwarmMode = false;
 
+    void Awake () {
+        StartCoroutine(SwarmModeLoop());
+    }
+
+    private void Start()
+    {
         StartCoroutine(SpawnEnemyLoop());
+    }
 
-	}
+    private IEnumerator SwarmModeLoop()
+    {
+        InSwarmMode = true;
+        yield return new WaitForSeconds(_swarmModeDuration);
+        InSwarmMode = false;
+        yield return new WaitForSeconds(_timeBetweenSwarmModes);
+        yield return SwarmModeLoop();
+    }
 
     private IEnumerator SpawnEnemyLoop()
     {
         SpawnEnemy();
-        yield return new WaitForSeconds(_enemySpawnRate);
+        if(InSwarmMode)
+        {
+            yield return new WaitForSeconds(_enemySwarmSpawnRate);
+        }
+        else
+        {
+            yield return new WaitForSeconds(_enemySpawnRate);
+        }
+        
         yield return SpawnEnemyLoop();
     }
 

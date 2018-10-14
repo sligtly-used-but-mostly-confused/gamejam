@@ -276,7 +276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: Press A To Load Next Scene
 --- !u!222 &222026885438271798
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -319,10 +319,10 @@ RectTransform:
   m_Father: {fileID: 224636147684196874}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.41900003, y: 0.20785931}
-  m_AnchorMax: {x: 0.5826079, y: 0.3021858}
-  m_AnchoredPosition: {x: 0, y: -1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.36446837, y: 0.21723287}
+  m_AnchorMax: {x: 0.6357342, y: 0.3021858}
+  m_AnchoredPosition: {x: 0.49999237, y: -1.5}
+  m_SizeDelta: {x: 1.199997, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224160550974673370
 RectTransform:

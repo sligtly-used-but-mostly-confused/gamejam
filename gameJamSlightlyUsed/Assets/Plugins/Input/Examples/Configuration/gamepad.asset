@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonMappings:
   - target: 4
-    buttons: 05000000
+    buttons: 00000000
   - target: 6
     buttons: 05000000
   - target: 5

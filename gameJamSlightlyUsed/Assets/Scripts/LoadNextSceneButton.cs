@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class LoadNextSceneButton : MonoBehaviour {
 
-	public void LoadNextScene()
+    private void Update()
+    {
+        MappedInput.InputDevices.ForEach(x =>
+        {
+            if(x.GetButtonDown(MappedButton.Ready))
+            {
+                LoadNextScene();
+            }
+        });
+    }
+
+    public void LoadNextScene()
     {
         LevelManager.Instance.LoadNextLevel();
     }

@@ -6,6 +6,15 @@ using System.Linq;
 public class PlatformColor : MonoBehaviour {
     Color cl = Color.white;
     private static float _minY, _maxY;
+    private static List<PlatformColor> Platforms = new List<PlatformColor>();
+    private void Awake()
+    {
+        Platforms.Add(this);
+    }
+    private void OnDestroy()
+    {
+        Platforms.Remove(this);
+    }
 
     void Start()
     {
@@ -13,11 +22,10 @@ public class PlatformColor : MonoBehaviour {
         Renderer rend = GetComponent<Renderer>();
         Transform tr = GetComponent<Transform>();
 
-
-        _minY = FindObjectsOfType<PlatformColor>().Min(x => x.transform.position.y);
-        _maxY = FindObjectsOfType<PlatformColor>().Max(x => x.transform.position.y);
-
-        FindObjectsOfType<PlatformColor>().ToList().ForEach(x => x.UpdateColor());
+        _minY = Platforms.Min(x => x.transform.position.y);
+        _maxY = Platforms.Max(x => x.transform.position.y);
+        UpdateColor();
+        //Platforms.ForEach(x => x.UpdateColor());
         
         //Set the main Color of the Material to green
         //rend.material.shader = Shader.Find("_Color");

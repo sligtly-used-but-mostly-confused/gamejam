@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeedRange: {x: 2.5, y: 15}
   _moveSpeed: 2.5
-  MoveSpeedStep: 0.5
+  MoveSpeedStep: 1
   _SqrtMaxHealth: 1
   _loseLifeCoolDownTime: 0
   _healthPrefab: {fileID: 1231442639888900, guid: d30f56ecc4788044ca27dc3e62c48b2e,
@@ -173,4 +173,4 @@ MonoBehaviour:
   _fullLifeMat: {fileID: 2100000, guid: d6b0b7345bf84cf4798ab1b83871831e, type: 2}
   _emptyLifeMat: {fileID: 2100000, guid: b07f323bd1b413340b4cfe664a1b5737, type: 2}
   NumKills: 0
-  EnemySqrtMaxHealth: 3
+  EnemySqrtMaxHealth: 4

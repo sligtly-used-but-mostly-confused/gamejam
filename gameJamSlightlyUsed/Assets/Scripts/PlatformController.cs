@@ -10,14 +10,18 @@ public class PlatformController : MonoBehaviour {
 
     private Stack<GameObject> _platForms = new Stack<GameObject>();
 
+    private static List<GameObject> Platforms = new List<GameObject>(); 
+
     private void Awake()
     {
-        _platForms.Push(gameObject);
+        
+        
     }
 
     private void Start()
     {
-
+        _platForms.Push(gameObject);
+        Platforms.Add(gameObject);
     }
 
     public GameObject GetTopObject()
@@ -34,6 +38,7 @@ public class PlatformController : MonoBehaviour {
         child.transform.position = topObject.transform.position + Vector3.up * topObject.transform.lossyScale.y;
         child.GetComponent<PlatformChild>().Owner = this;
         _platForms.Push(child);
+        Platforms.Add(child);
     }
 
     public void Lower()
