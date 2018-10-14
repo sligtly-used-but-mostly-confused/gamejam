@@ -30,7 +30,7 @@ public class AlarmSound : MonoBehaviour
 
             AudioMain.instance.turnDownGameMusic();
             hordeStart.UnPause();
-            if (hordeStart.volume < 0.9f)
+            if (hordeStart.volume < 0.4f)
             {
                 hordeStart.volume += Time.deltaTime * 0.5f;
             }

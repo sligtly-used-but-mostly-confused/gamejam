@@ -26,10 +26,10 @@ public class AudioMain : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        mainAudio.volume = 0.4f;
+        mainAudio.volume = 0.2f;
         mainAudio.Play();
         mainAudio.loop = true;
-        gameAudio.volume = 0.3f;
+        gameAudio.volume = 0.1f;
         gameAudio.Play();
         gameAudio.Pause();
         gameAudio.loop = true;
@@ -61,7 +61,7 @@ public class AudioMain : MonoBehaviour {
             gameAudio.UnPause();
         }
         else{
-            if(mainAudio.volume < 0.4){
+            if(mainAudio.volume < 0.1){
                 mainAudio.volume += Time.deltaTime * 0.1f;
             }
             gameAudio.Pause();
@@ -75,7 +75,7 @@ public class AudioMain : MonoBehaviour {
 
     public void turnUpGameMusic()
     {
-        gameAudio.volume = 0.4f;
+        gameAudio.volume = 0.1f;
     }
 
 
