@@ -24,6 +24,12 @@ public class EnemySpawner : MonoBehaviour {
         StartCoroutine(SwarmModeLoop());
     }
 
+    private void OnDestroy()
+    {
+        InSwarmMode = false;
+        StopAllCoroutines();
+    }
+
     private void Start()
     {
         StartCoroutine(SpawnEnemyLoop());
@@ -31,10 +37,10 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SwarmModeLoop()
     {
+        yield return new WaitForSeconds(_timeBetweenSwarmModes);
         InSwarmMode = true;
         yield return new WaitForSeconds(_swarmModeDuration);
         InSwarmMode = false;
-        yield return new WaitForSeconds(_timeBetweenSwarmModes);
         yield return SwarmModeLoop();
     }
 

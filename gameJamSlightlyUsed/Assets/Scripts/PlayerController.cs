@@ -104,6 +104,7 @@ public class PlayerController : ObjectController {
         projectile.transform.position = _aimingReticle.transform.position;
         projectile.GetComponent<Rigidbody>().velocity = dir * _shootSpeed;
         projectile.GetComponent<ProjectileController>().Owner = this;
+        
     }
 
     private static Vector3Int ClosestDirection(Vector3 v, Vector3Int[] compass)

@@ -52,9 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
+  - HomeScreen
   - Level0
+  - Level0.5
   - Level1
   - Level1.5
   - Level2
   - Level3
-  CurrentLevel: Level1
+  CurrentLevel: HomeScreen

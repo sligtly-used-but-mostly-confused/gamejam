@@ -42,10 +42,9 @@ public class PlatformColor : MonoBehaviour {
 
         var deltaFromMin = tr.position.y - _minY;
         var delta = _maxY - _minY;
-        var percent = deltaFromMin / delta;
-        GetComponent<Renderer>().material.color = Color.HSVToRGB(1.0f, 1.0f, percent);
-        //rend.material.SetColor("_Color", Color.HSVToRGB(1.0f, 1.0f, percent));
-        //rend.material.SetColor("_SpecColor", Color.white);
+        var percent = Mathf.Clamp(deltaFromMin / delta, .2f, 1f);
+        //GetComponent<Renderer>().material.color = Color.HSVToRGB(1.0f, 1.0f, percent);
+        GetComponent<Renderer>().material.SetColor("_Color", Color.HSVToRGB(1.0f, 1.0f, percent));
     }
 
 }
