@@ -23,6 +23,18 @@ public class LevelManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(CurrentLevel);
+        PlayerManager.Instance.LoadNewScene();
+    }
+
+    public void RestartGame()
+    {
+        CurrentLevel = _levels[0];
+        SceneManager.LoadScene(CurrentLevel);
+    }
+
     public void LoadNextLevel()
     {
         int index = _levels.IndexOf(CurrentLevel);
