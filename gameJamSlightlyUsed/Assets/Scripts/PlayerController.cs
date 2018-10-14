@@ -28,15 +28,20 @@ public class PlayerController : ObjectController {
 
     private Coroutine ShootingCooldownCoroutine = null;
 
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private Material Mat;
+
     public override void Start()
     {
         base.Start();
 
-        var mat = PlayerManager.Instance.GetPlayerMaterial(MappedInput.InputDevices[_controllerId]);
-        GetComponent<Renderer>().material = mat;
+        //var mat = PlayerManager.Instance.GetPlayerMaterial(MappedInput.InputDevices[_controllerId]);
+        //GetComponent<Renderer>().material = Mat;
 
         var endpoint = PlayerManager.Instance.GetEndpoint();
-        endpoint.GetComponent<Renderer>().material = mat;
+        endpoint.GetComponent<Renderer>().material = Mat;
         endpoint.Owner = this;
     }
 
@@ -45,8 +50,15 @@ public class PlayerController : ObjectController {
         Vector3 leftStick = input.GetAxis2DCircleClamp(MappedAxis.Horizontal, MappedAxis.Vertical);
         var fixedLeftStick = Camera.main.transform.rotation * new Vector3(leftStick.x, 0, leftStick.y);
         fixedLeftStick = new Vector3(fixedLeftStick.x, 0, fixedLeftStick.z);
-        
-        Move(fixedLeftStick * Time.deltaTime);
+        if(fixedLeftStick.magnitude > 0)
+        {
+            animator.SetBool("Running", true);
+            Move(fixedLeftStick * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
 
         Vector3 rightStick = input.GetAxis2DCircleClamp(MappedAxis.AimX, MappedAxis.AimY);
 
@@ -54,11 +66,18 @@ public class PlayerController : ObjectController {
         var fixedAimDir = Camera.main.transform.rotation * aimDir;
         fixedAimDir = new Vector3(fixedAimDir.x, 0, fixedAimDir.z);
 
-        _aimingReticle.transform.localPosition = fixedAimDir;
+        _aimingReticle.transform.position = transform.position + fixedAimDir;
+
+        transform.rotation = Quaternion.LookRotation(aimDir.normalized);
 
         if (input.GetAxis(MappedAxis.ShootGravGun) != 0 && aimDir.magnitude > 0 && ShootingCooldownCoroutine == null)
         {
             ShootingCooldownCoroutine = StartCoroutine(ShootOnCooldown());
+            animator.SetBool("Shooting", true);
+        }
+        else if(input.GetAxis(MappedAxis.ShootGravGun) == 0)
+        {
+            animator.SetBool("Shooting", false);
         }
 
         if(input.GetAxis(MappedAxis.ChangeCameraAngle) != 0)
@@ -93,7 +112,8 @@ public class PlayerController : ObjectController {
 
     private IEnumerator ShootOnCooldown()
     {
-        Shoot(_aimingReticle.transform.localPosition);
+        
+        Shoot((_aimingReticle.transform.position - transform.position).normalized);
         yield return new WaitForSeconds(_shootCooldown);
         ShootingCooldownCoroutine = null;
     }
