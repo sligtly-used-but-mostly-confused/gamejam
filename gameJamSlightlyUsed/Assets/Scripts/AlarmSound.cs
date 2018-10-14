@@ -42,7 +42,7 @@ public class AlarmSound : MonoBehaviour
             {
                 hordeStart.volume -= Time.deltaTime * 0.3f;
             }
-            else
+            else if(hordeStart.isPlaying == false)
             {
                 AudioMain.instance.turnUpGameMusic();
                 hordeStart.Pause();
