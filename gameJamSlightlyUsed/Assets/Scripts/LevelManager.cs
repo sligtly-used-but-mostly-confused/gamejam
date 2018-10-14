@@ -30,5 +30,6 @@ public class LevelManager : MonoBehaviour {
         index = (index + _levels.Count) % _levels.Count;
         CurrentLevel = _levels[index];
         SceneManager.LoadScene(CurrentLevel);
+        PlayerManager.Instance.LoadNewScene();
     }
 }
