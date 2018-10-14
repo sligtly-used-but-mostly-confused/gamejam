@@ -16,18 +16,14 @@ public class EnemySpawner : MonoBehaviour {
     private float _timeBetweenSwarmModes = 20f;
     [SerializeField]
     private float _swarmModeDuration = 5f;
+
+
     public float chanceToSpawnBraker = .2f;
 
     public static bool InSwarmMode = false;
-
+  
     void Awake () {
         StartCoroutine(SwarmModeLoop());
-    }
-
-    private void OnDestroy()
-    {
-        InSwarmMode = false;
-        StopAllCoroutines();
     }
 
     private void Start()
@@ -37,10 +33,14 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SwarmModeLoop()
     {
-        yield return new WaitForSeconds(_timeBetweenSwarmModes);
         InSwarmMode = true;
+        AlarmSound.hordeOn = true;
+        AlarmSound.hordeOn = true;
         yield return new WaitForSeconds(_swarmModeDuration);
         InSwarmMode = false;
+        AlarmSound.hordeOn = false;
+        AlarmSound.hordeOn = false;
+        yield return new WaitForSeconds(_timeBetweenSwarmModes);
         yield return SwarmModeLoop();
     }
 
