@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4077851244161286}
   - component: {fileID: 33002103091295050}
   - component: {fileID: 23706670617416054}
-  - component: {fileID: 65703287224373626}
   - component: {fileID: 54936986239832860}
   - component: {fileID: 114577857558555034}
   - component: {fileID: 108004520815219522}
+  - component: {fileID: 65933355259372980}
   m_Layer: 0
   m_Name: BreakThingsEnemy
   m_TagString: Untagged
@@ -102,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65703287224373626
+--- !u!65 &65933355259372980
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,8 +112,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.987872, y: 1.9964647, z: 1.7018943}
+  m_Center: {x: 0.012648761, y: 0.49823236, z: 0.0015499592}
 --- !u!108 &108004520815219522
 Light:
   m_ObjectHideFlags: 1
@@ -172,5 +172,6 @@ MonoBehaviour:
   _life: 0
   _fullLifeMat: {fileID: 2100000, guid: d6b0b7345bf84cf4798ab1b83871831e, type: 2}
   _emptyLifeMat: {fileID: 2100000, guid: b07f323bd1b413340b4cfe664a1b5737, type: 2}
+  _healthYOffset: 1
   NumKills: 0
   EnemySqrtMaxHealth: 3

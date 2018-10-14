@@ -24,7 +24,8 @@ public class EnemyController : ObjectController {
 
         var dir = (closestPlayer.transform.position - transform.position);
         dir = new Vector3(dir.x, 0, dir.z).normalized;
-
+        
+        transform.LookAt(closestPlayer.transform, Vector3.up);
         Move(dir * Time.deltaTime);
     }
 

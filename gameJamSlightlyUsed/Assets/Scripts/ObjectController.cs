@@ -23,7 +23,8 @@ public class ObjectController : MonoBehaviour {
     private Material _fullLifeMat;
     [SerializeField]
     private Material _emptyLifeMat;
-
+    [SerializeField]
+    private float _healthYOffset = 1;
     public int NumKills = 0;
 
     private Coroutine _loseLifeOnCoolDownCoroutine;
@@ -50,7 +51,7 @@ public class ObjectController : MonoBehaviour {
                 var health = Instantiate(_healthPrefab);
                 health.transform.SetParent(transform);
                 health.transform.localScale = new Vector3(1, 1, 1) * healthSize;
-                health.transform.localPosition = new Vector3(i * healthSize * 2 - Mathf.Sqrt(_maxHealth) * healthSize / 2, 1,
+                health.transform.localPosition = new Vector3(i * healthSize * 2 - Mathf.Sqrt(_maxHealth) * healthSize / 2, _healthYOffset,
                                                              j * healthSize * 2 - Mathf.Sqrt(_maxHealth) * healthSize / 2);
                 _healthObjects.Add(health);
             }
