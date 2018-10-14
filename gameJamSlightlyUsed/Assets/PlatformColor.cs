@@ -25,6 +25,10 @@ public class PlatformColor : MonoBehaviour {
         _minY = Platforms.Min(x => x.transform.position.y);
         _maxY = Platforms.Max(x => x.transform.position.y);
         UpdateColor();
+        foreach(var platformColor in Platforms)
+        {
+            platformColor.UpdateColor();
+        }
         //Platforms.ForEach(x => x.UpdateColor());
         
         //Set the main Color of the Material to green
