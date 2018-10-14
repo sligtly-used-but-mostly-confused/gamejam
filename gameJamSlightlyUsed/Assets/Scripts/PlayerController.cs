@@ -32,7 +32,7 @@ public class PlayerController : ObjectController {
     {
         base.Start();
 
-        var mat = PlayerManager.Instance.GetPlayerMaterial();
+        var mat = PlayerManager.Instance.GetPlayerMaterial(MappedInput.InputDevices[_controllerId]);
         GetComponent<Renderer>().material = mat;
 
         var endpoint = PlayerManager.Instance.GetEndpoint();
