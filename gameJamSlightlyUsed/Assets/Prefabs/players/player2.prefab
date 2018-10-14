@@ -578,7 +578,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202667705535862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -759,7 +759,7 @@ MonoBehaviour:
   _life: 4
   _fullLifeMat: {fileID: 2100000, guid: d6b0b7345bf84cf4798ab1b83871831e, type: 2}
   _emptyLifeMat: {fileID: 2100000, guid: b07f323bd1b413340b4cfe664a1b5737, type: 2}
-  _healthYOffset: 3
+  _healthYOffset: 1.5
   NumKills: 0
   _shootSpeedStep: 2.5
   _shootSpeed: 10

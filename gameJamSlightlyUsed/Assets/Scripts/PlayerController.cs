@@ -67,8 +67,8 @@ public class PlayerController : ObjectController {
         fixedAimDir = new Vector3(fixedAimDir.x, 0, fixedAimDir.z);
 
         _aimingReticle.transform.position = transform.position + fixedAimDir;
-
-        transform.rotation = Quaternion.LookRotation(aimDir.normalized);
+        if(rightStick.magnitude != 0)
+            transform.rotation = Quaternion.LookRotation(fixedAimDir.normalized);
 
         if (input.GetAxis(MappedAxis.ShootGravGun) != 0 && aimDir.magnitude > 0 && ShootingCooldownCoroutine == null)
         {

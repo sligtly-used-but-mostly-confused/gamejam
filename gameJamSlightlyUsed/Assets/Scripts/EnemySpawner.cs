@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SwarmModeLoop()
     {
+        yield return new WaitForSeconds(_timeBetweenSwarmModes);
         InSwarmMode = true;
         AlarmSound.hordeOn = true;
         AlarmSound.hordeOn = true;
@@ -40,7 +41,6 @@ public class EnemySpawner : MonoBehaviour {
         InSwarmMode = false;
         AlarmSound.hordeOn = false;
         AlarmSound.hordeOn = false;
-        yield return new WaitForSeconds(_timeBetweenSwarmModes);
         yield return SwarmModeLoop();
     }
 
