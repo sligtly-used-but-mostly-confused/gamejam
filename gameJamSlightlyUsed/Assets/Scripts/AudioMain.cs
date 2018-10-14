@@ -5,24 +5,24 @@ using UnityEngine.SceneManagement;
 
 
 public class AudioMain : MonoBehaviour {
-    public AudioSource mainAudio;                   //Drag a reference to the audio source which will play the sound effects.
+    public bool hordeOn = false;
+    public AudioSource mainAudio;                 
     public AudioSource gameAudio;
     public static AudioMain instance = null;
     bool isPlaying = false;
     void Awake()
     {
-        //Check if there is already an instance of SoundManager
+      
         if (instance == null)
-            //if not, set it to this.
-            instance = this;
-        //If instance already exists:
+        instance = this;
         else if (instance != this)
-            //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
-            Destroy(gameObject);
-
-        //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        mainAudio.loop = true;
+        DontDestroyOnLoad(this);
+        mainAudio.loop = true; 
+
+
+
     }
     // Use this for initialization
     void Start () {
@@ -68,5 +68,16 @@ public class AudioMain : MonoBehaviour {
         }
        
     }
-   
+
+    public void turnDownGameMusic(){
+        gameAudio.volume = 0.05f;
+    }
+
+    public void turnUpGameMusic()
+    {
+        gameAudio.volume = 0.4f;
+    }
+
+
+
 }

@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour {
     private float _timeBetweenSwarmModes = 20f;
     [SerializeField]
     private float _swarmModeDuration = 5f;
+    [SerializeField]
+
     public float chanceToSpawnBraker = .2f;
 
     public static bool InSwarmMode = false;
@@ -32,8 +34,10 @@ public class EnemySpawner : MonoBehaviour {
     private IEnumerator SwarmModeLoop()
     {
         InSwarmMode = true;
+        AlarmSound.hordeOn = true;
         yield return new WaitForSeconds(_swarmModeDuration);
         InSwarmMode = false;
+        AlarmSound.hordeOn = false;
         yield return new WaitForSeconds(_timeBetweenSwarmModes);
         yield return SwarmModeLoop();
     }
