@@ -118,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576480381925122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.324219, y: -2.3398438, z: -8.502031}
+  m_LocalPosition: {x: -7.2242184, y: 4.1601562, z: -6.5620317}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4902870944770666}
@@ -130,8 +130,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327557364663904}
-  m_LocalRotation: {x: 0.21509759, y: 0.52119076, z: -0.13766684, w: 0.81433475}
-  m_LocalPosition: {x: -32.14064, y: 9.660156, z: -21.731375}
+  m_LocalRotation: {x: -0.07138728, y: -0.67649645, z: -0.06615637, w: 0.7299862}
+  m_LocalPosition: {x: 22.373985, y: -1.363349, z: -10.754749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4586104069193272}
@@ -144,8 +144,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1891309089008852}
-  m_LocalRotation: {x: 0.21509759, y: 0.52119076, z: -0.13766684, w: 0.81433475}
-  m_LocalPosition: {x: -35.14378, y: 11.417544, z: -20.75158}
+  m_LocalRotation: {x: -0.07138728, y: -0.67649645, z: -0.06615637, w: 0.7299862}
+  m_LocalPosition: {x: 16.557135, y: -0.38544083, z: -9.314234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4902870944770666}
@@ -188,7 +188,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1380230130549884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.324219, y: -2.3398438, z: -8.332031}
+  m_LocalPosition: {x: -15.38, y: -3.31, z: -8.332031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4902870944770666}
@@ -216,7 +216,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 40.298176
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -342,13 +342,19 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 1
   m_Waypoints:
-  - position: {x: -16, y: 12, z: -17}
+  - position: {x: -21.013363, y: 15, z: -17}
     roll: 0
   - position: {x: 16, y: 12, z: -17}
     roll: 0
+  - position: {x: 26.925903, y: 7.155348, z: -14.765112}
+    roll: 0
+  - position: {x: 38.123505, y: 1.7971578, z: 0}
+    roll: 0
+  - position: {x: 26.9259, y: 7.155348, z: 14.044759}
+    roll: 0
   - position: {x: 16, y: 12, z: 17}
     roll: 0
-  - position: {x: -16, y: 12, z: 17}
+  - position: {x: -21.274319, y: 15, z: 22.78783}
     roll: 0
 --- !u!114 &114468230983878870
 MonoBehaviour:
@@ -402,9 +408,9 @@ MonoBehaviour:
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.337
-  m_DeadZoneHeight: 0.241
-  m_SoftZoneWidth: 0.78
+  m_DeadZoneWidth: 0.551
+  m_DeadZoneHeight: 0.443
+  m_SoftZoneWidth: 0.73
   m_SoftZoneHeight: 0.63
   m_BiasX: 0
   m_BiasY: 0
