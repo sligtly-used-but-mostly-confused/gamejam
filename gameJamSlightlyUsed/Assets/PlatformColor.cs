@@ -18,12 +18,12 @@ public class PlatformColor : MonoBehaviour {
         _maxY = FindObjectsOfType<PlatformColor>().Max(x => x.transform.position.y);
 
         FindObjectsOfType<PlatformColor>().ToList().ForEach(x => x.UpdateColor());
-
+        
         //Set the main Color of the Material to green
-        rend.material.shader = Shader.Find("_Color");
+        //rend.material.shader = Shader.Find("_Color");
         
         //Find the Specular shader and change its Color to red
-        rend.material.shader = Shader.Find("Specular");
+        //rend.material.shader = Shader.Find("Specular");
         
     }
 
@@ -35,8 +35,9 @@ public class PlatformColor : MonoBehaviour {
         var deltaFromMin = tr.position.y - _minY;
         var delta = _maxY - _minY;
         var percent = deltaFromMin / delta;
-        rend.material.SetColor("_Color", Color.HSVToRGB(1.0f, 1.0f, percent));
-        rend.material.SetColor("_SpecColor", Color.white);
+        GetComponent<Renderer>().material.color = Color.HSVToRGB(1.0f, 1.0f, percent);
+        //rend.material.SetColor("_Color", Color.HSVToRGB(1.0f, 1.0f, percent));
+        //rend.material.SetColor("_SpecColor", Color.white);
     }
 
 }
