@@ -49,7 +49,9 @@ public class EnemyController : ObjectController {
                 }
             }
         }
-        
+
+        PlatformColor.UpdateAllColors();
+
         Destroy(gameObject);
     }
 
