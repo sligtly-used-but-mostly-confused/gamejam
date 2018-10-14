@@ -707,7 +707,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 612784634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 2, z: 0}
+  m_LocalPosition: {x: -10, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1425,7 +1425,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4385169991361016, guid: 0bc398806a6744341b3e857edfbcef46, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4385169991361016, guid: 0bc398806a6744341b3e857edfbcef46, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1564,11 +1564,11 @@ MonoBehaviour:
     type: 2}
   _platformBrakingEnemyPrefab: {fileID: 1157420605479650, guid: dc8c9810c9ca3f748982347fe4cd31c7,
     type: 2}
-  _enemySpawnRate: 2
+  _enemySpawnRate: 1.5
   _enemySwarmSpawnRate: 0.25
   _timeBetweenSwarmModes: 20
   _swarmModeDuration: 5
-  chanceToSpawnBraker: 0.1
+  chanceToSpawnBraker: 0.2
 --- !u!4 &1690640182
 Transform:
   m_ObjectHideFlags: 0
@@ -1934,7 +1934,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4385169991361016, guid: 0bc398806a6744341b3e857edfbcef46, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4385169991361016, guid: 0bc398806a6744341b3e857edfbcef46, type: 2}
       propertyPath: m_LocalPosition.z

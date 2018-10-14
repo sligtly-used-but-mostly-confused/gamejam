@@ -20,6 +20,7 @@ public class PlatformBrakingEnemyController : EnemyController {
             }
         }
 
+        PlatformColor.UpdateAllColors();
         Destroy(gameObject);
 
     }

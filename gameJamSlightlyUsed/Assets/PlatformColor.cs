@@ -24,11 +24,6 @@ public class PlatformColor : MonoBehaviour {
 
         _minY = Platforms.Min(x => x.transform.position.y);
         _maxY = Platforms.Max(x => x.transform.position.y);
-        UpdateColor();
-        foreach(var platformColor in Platforms)
-        {
-            platformColor.UpdateColor();
-        }
         //Platforms.ForEach(x => x.UpdateColor());
         
         //Set the main Color of the Material to green
@@ -37,6 +32,14 @@ public class PlatformColor : MonoBehaviour {
         //Find the Specular shader and change its Color to red
         //rend.material.shader = Shader.Find("Specular");
         
+    }
+
+    public static void UpdateAllColors()
+    {
+        foreach (var platformColor in Platforms)
+        {
+            platformColor.UpdateColor();
+        }
     }
 
     public void UpdateColor()
