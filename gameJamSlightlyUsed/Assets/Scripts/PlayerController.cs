@@ -65,12 +65,17 @@ public class PlayerController : ObjectController {
         var aimDir = new Vector3(rightStick.x, 0, rightStick.y).normalized;
         var fixedAimDir = Camera.main.transform.rotation * aimDir;
         fixedAimDir = new Vector3(fixedAimDir.x, 0, fixedAimDir.z);
-
-        _aimingReticle.transform.position = transform.position + fixedAimDir;
+        
         if(rightStick.magnitude != 0)
             transform.rotation = Quaternion.LookRotation(fixedAimDir.normalized);
+        else
+        {
+            fixedAimDir = transform.forward;
+        }
 
-        if (input.GetAxis(MappedAxis.ShootGravGun) != 0 && aimDir.magnitude > 0 && ShootingCooldownCoroutine == null)
+        _aimingReticle.transform.position = transform.position + fixedAimDir;
+
+        if (input.GetAxis(MappedAxis.ShootGravGun) != 0 && fixedAimDir.magnitude > 0 && ShootingCooldownCoroutine == null)
         {
             ShootingCooldownCoroutine = StartCoroutine(ShootOnCooldown());
             animator.SetBool("Shooting", true);
